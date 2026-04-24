@@ -1,6 +1,4 @@
-def main():
-    print("Hello from flask-mega-tutorial!")
-
+from app import flask_app
 
 if __name__ == "__main__":
-    main()
+    flask_app.run(debug=True)
