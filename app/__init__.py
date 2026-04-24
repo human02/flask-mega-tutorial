@@ -2,4 +2,4 @@ from flask import Flask
 
 flask_app = Flask(__name__)
 
-from app import routes  # noqa: F401 # avoid circular imports
+from app import routes  # noqa: E402, F401 # avoid circular imports
