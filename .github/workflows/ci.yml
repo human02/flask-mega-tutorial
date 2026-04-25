@@ -1,0 +1,30 @@
+name: CI Pipeline
+
+on:
+    push:
+        branches:
+            - main
+            - "feat/**"
+            - "fix/**"
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v6
+
+            - name: Install uv
+              uses: astral-sh/setup-uv@v7
+              with:
+                  enable-cache: true # Uses uv.lock to speed up installation - enables global uv cache for all subsequent steps
+
+            - name: Set up Python
+              run: uv python install
+
+            - name: Run Ruff # --frozen ensures the CI uses your exact lockfile and fails if it's out of sync
+              run: |
+                  uv run --frozen ruff check
+                  uv run --frozen ruff format --check
