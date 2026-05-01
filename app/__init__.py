@@ -10,5 +10,6 @@ flask_app.config.from_object(Config)
 db = SQLAlchemy(flask_app)  # for DB connection
 migrate = Migrate(flask_app, db)  # for DB structure Migration needs
 login = LoginManager(flask_app)  # for user logged-in state
+login.login_view = "login"
 
 from app import routes, models  # noqa: E402, F401 # avoid circular imports
