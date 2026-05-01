@@ -12,12 +12,12 @@ from urllib.parse import urlsplit
 @flask_app.route("/index")
 @login_required
 def index():
-    user = {"username": "John Doe"}
+    # user = {"username": "John Doe"}
     posts = [
         {"author": {"username": "John"}, "body": "Beautiful day in Portland!"},
         {"author": {"username": "Susan"}, "body": "The Avengers movie was so cool!"},
     ]
-    return render_template("index.html", title="Home", user=user, posts=posts)
+    return render_template("index.html", title="Home", posts=posts)
 
 
 @flask_app.route("/login", methods=["GET", "POST"])
