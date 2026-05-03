@@ -22,6 +22,7 @@ class RegistrationForm(FlaskForm):
     )
     submit = SubmitField("Register")
 
+    # WTForms invokes them in addition to the stock validators - validate_<field_name>
     def validate_username(self, username):
         user = db.session.scalar(sa.select(User).where(User.username == username.data))
         if user is not None:
