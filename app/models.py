@@ -22,6 +22,11 @@ class User(UserMixin, db.Model):
     # for high-level view of the relationship between users and posts
     posts: so.WriteOnlyMapped["Post"] = so.relationship(back_populates="author")
 
+    about_me: so.Mapped[Optional[str]] = so.mapped_column(sa.String(140))
+    last_seen: so.Mapped[Optional[datetime]] = so.mapped_column(
+        default=lambda: datetime.now(timezone.utc)
+    )
+
     def __repr__(self):  # it tells Python how to print objects of this class
         return f"<User {self.username!r}>"
 
